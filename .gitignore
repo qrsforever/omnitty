@@ -1,0 +1,14 @@
+**/**/*.o
+
+omnitty-*/.depends
+omnitty-*/config.log
+omnitty-*/config.status
+omnitty-*/Makefile
+omnitty-*/omnitty
+
+rote-*/.depends
+rote-*/Makefile
+rote-*/config.log
+rote-*/config.status
+rote-*/librote.so.0.2.8
+rote-*/rote-config

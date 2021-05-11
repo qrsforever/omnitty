@@ -15,7 +15,7 @@ mandir=@mandir@
 CFLAGS+=-DOMNITTY_VERSION=\"$(OMNITTY_VERSION)\"
 
 omnitty: $(objects)
-	$(CC) $(CFLAGS) -o omnitty $(objects) $(LDFLAGS) $(LIBS)
+	$(CC) $(CFLAGS) -o omnitty $(objects) $(LDFLAGS) $(LIBS) -lncurses
 
 -include .depends
 
