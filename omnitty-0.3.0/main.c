@@ -57,6 +57,8 @@
              "\n" \
              "     -T        specifies width of terminal area\n" \
              "               (default is 80 characters)\n" \
+             "\n" \
+             "     -H        specifies machine host file\n" \
              "\n"
 
 static WINDOW *listwin   = NULL;
@@ -311,8 +313,10 @@ int main(int argc, char **argv) {
    bool quit = false;
    pid_t chldpid;
 
+   static char filepath[128];
+
    /* process command-line options */
-   while ( 0 < (ch = getopt(argc, argv, "W:T:")) ) {
+   while ( 0 < (ch = getopt(argc, argv, "W:T:H:")) ) {
       switch (ch) {
          case 'W': list_win_chars = atoi(optarg); break;
 	 case 'T': term_win_chars = atoi(optarg);
@@ -322,6 +326,7 @@ int main(int argc, char **argv) {
 		       fputs(RTFM, stderr);
 		       exit(2);
 		   }
+     case 'H': strcpy(filepath, optarg); break;
 		   break;
          default: fputs(RTFM, stderr); exit(2);
       }
@@ -332,6 +337,9 @@ int main(int argc, char **argv) {
    menu_init(minibuf);
 
    machmgr_init(listwin, vtrows, vtcols);
+
+   if (strlen(filepath) > 0)
+       add_machines_from_file(filepath);
 
    while (!quit) {
       if (zombie_count) {
