@@ -317,19 +317,19 @@ int main(int argc, char **argv) {
 
    /* process command-line options */
    while ( 0 < (ch = getopt(argc, argv, "W:T:H:")) ) {
-      switch (ch) {
-         case 'W': list_win_chars = atoi(optarg); break;
-	 case 'T': term_win_chars = atoi(optarg);
-		   if( term_win_chars < TERMWIN_MIN ) {
-		       fprintf(stderr, " terminal area too narrow: %d\n", 
-                                                        term_win_chars);
-		       fputs(RTFM, stderr);
-		       exit(2);
-		   }
-     case 'H': strcpy(filepath, optarg); break;
-		   break;
-         default: fputs(RTFM, stderr); exit(2);
-      }
+       switch (ch) {
+           case 'W': list_win_chars = atoi(optarg); break;
+           case 'T': term_win_chars = atoi(optarg);
+                     if( term_win_chars < TERMWIN_MIN ) {
+                         fprintf(stderr, " terminal area too narrow: %d\n", 
+                             term_win_chars);
+                         fputs(RTFM, stderr);
+                         exit(2);
+                     }
+                     break;
+           case 'H': strcpy(filepath, optarg); break;
+           default: fputs(RTFM, stderr); exit(2);
+       }
    }
    signal(SIGCHLD, sigchld_handler);
    curses_init();
